@@ -1,0 +1,26 @@
+{
+  "name": "node_deploy_ec2_docker_and-ci-cd",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WimukthiMadushan/Node_Deploy_EC2_Docker_and-CI-CD.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WimukthiMadushan/Node_Deploy_EC2_Docker_and-CI-CD/issues"
+  },
+  "homepage": "https://github.com/WimukthiMadushan/Node_Deploy_EC2_Docker_and-CI-CD#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9"
+  }
+}
