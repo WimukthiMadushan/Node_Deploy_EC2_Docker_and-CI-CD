@@ -7,15 +7,20 @@ on:
       - completed
 
 jobs:
-  build:
+  deploy:
     runs-on: self-hosted
 
     steps:
-      - name: Pull the Docker image from Docker Hub
-        run: sudo docker pull wimukthibandara/cicd-pipeline:latest
+      - name: Clean up existing containers
+        run: |
+          docker ps -aq --filter "name=cicd-pipeline-container" | xargs -r docker rm -f
 
-      - name: Delete the running container
-        run: docker rm -f cicd-pipeline-container || true
+      - name: Pull and Run Docker Container
+        run: |
+          docker run -d -p 8080:8080 --pull always --name cicd-pipeline-container \
+          wimukthibandara/cicd-pipeline:latest
 
-      - name: Run the Docker container
-        run: docker run -d -p 8080:8080 --name cicd-pipeline-container wimukthibandara/cicd-pipeline:latest
+      - name: Health Check
+        run: |
+          sleep 10
+          curl -f http://localhost:8080 || (echo "Health check failed" && exit 1)
