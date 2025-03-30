@@ -19,24 +19,6 @@ app.get('/', (req, res) => {
     res.send('Hello World');
 });
 
-const userSchema = new mongoose.Schema({
-    name: String,
-    email: String,
-}, { collection: 'user' })
-
-const User = mongoose.model('User', userSchema);
-
-
-app.get('/api/user', async (req, res) => {
-    try {
-        const users = await User.find();  
-        res.json(users);
-    } catch (err) {
-        res.status(500).json({ message: "Error fetching users", error: err });
-    }
-});
-
-
 
 // Start the server
 app.listen(PORT, () => {
